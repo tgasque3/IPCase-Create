@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+	    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/custom-theme/jquery-ui-1.10.1.custom.min.css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./Dashboard Template for Bootstrap_files/ie-emulation-modes-warning.js"></script><style type="text/css"></style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <p class="navbar-brand">City Sim</p>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <h4>Money</h4>
+				<div id="moneyBar"></div>
+			<h4>Economy</h4>
+				<div id="economyBar"></div>
+			<h4>Moral</h4>
+				<div id="moralBar"></div>
+			<h4>Crime</h4>
+				<div id="crimeBar"></div>
+				<button id="go">Go!</button>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h1 class="page-header" style="text-align: center">City Status</h1>
+		<img src="image/city3.jpg" class="center-block" alt="Food">
+      
+		<div class="row placeholders">
+		<h2 class="sub-header" id="target">Area for Characters</h2>
+		<img src="image/citizen2.jpg">
+		<img src="image/crim2.jpg">
+		<img src="image/crim3.jpg">
+		<img src="image/citizen.jpg">
+		<img src="image/student.jpg">
+		<img src="image/citizen2.jpg">
+		<img src="image/crim2.jpg">
+		<img src="image/crim3.jpg">
+		<img src="image/citizen.jpg">
+		<img src="image/student2.jpg">
+		<img src="image/crim3.jpg">
+		<img src="image/citizen.jpg">
+		<img src="image/student2.jpg">
+		</div>
+          
+          
+		  
+		  
+		  
+		  
+		  
+		  
+		      <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+             <h4>Prison</h4>
+			 <div id="prisonBar"></div>
+              <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+            <h4>Education</h4>
+			<div id="educationBar"></div>
+              <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+			
+              <h4>Law</h4>
+			  <div id="lawBar"></div>
+              <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <h4>Job</h4>
+			  <div id="jobBar"></div>
+              <span class="text-muted"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	
+	   <!-- Bootstrap core JavaScript
+    ================================================== -->
+	 <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.1.custom.min.js"></script>
+		<script>
+		
+	//default global values
+ money = 50;
+ moral = 20;
+ crime = 40;
+ economy = 20;
+ 
+	//initialize mainbars
+	 $("#crimeBar").progressbar({
+		value: crime,
+		complete: function(){
+				alert("too much crime");
+			}
+	 });
+	 $("#moneyBar").progressbar({
+		value: money
+	 });
+	 $("#moralBar").progressbar({
+		value: moral,
+		change: function() {
+		{
+			if($("#moralBar").progressbar("value") == 0)
+				{
+					alert("moral colapse");
+				}
+		}
+    }
+	 });
+	 $("#economyBar").progressbar({
+		value: economy
+	 });
+	  // create active bars
+	 $("#prisonBar").progressbar({});
+	 $("#educationBar").progressbar({});
+	 $("#lawBar").progressbar({});
+	 $("#jobBar").progressbar({});
+	 
+	  $("#prisonBar").on("click", function () {
+					var currentVal = $("#prisonBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(5);
+							$("#prisonBar").progressbar("option", "value", currentVal);
+							console.log($("#prisonBar").progressbar("value"));
+				});
+				
+	$("#educationBar").on("click", function () {
+					var currentVal = $("#educationBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(5);
+							$("#educationBar").progressbar("option", "value", currentVal);
+				});
+				
+	$("#lawBar").on("click", function () {
+					var currentVal = $("#lawBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(30);
+							$("#lawBar").progressbar("option", "value", currentVal);
+				});
+				
+	$("#jobBar").on("click", function () {
+					var currentVal = $("#jobBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(-20);
+							$("#jobBar").progressbar("option", "value", currentVal);
+				});
+		//update main bars fucntions sesnt
+		function updateMoney(changeVal)
+			{
+				money = money + changeVal;
+				$("#moneyBar").progressbar("option", "value", money);
+			}
+		function updateEconomy(changeVal)
+			{
+				economy = economy + changeVal;
+				$("#economyBar").progressbar("option", "value", economy);
+			}
+		function updateMoral(changeVal)
+			{
+				moral = moral + changeVal;
+				$("#moralBar").progressbar("option", "value", moral);
+			}
+		function updateCrime(changeVal)
+			{
+				crime = crime + changeVal;
+				$("#crimeBar").progressbar("option", "value", crime);
+			}
+			//store events into array for use in random function
+		var myArray = ["A", "B", "c", "d", "e", "f", "g"];
+		//var show = myArray[Math.floor(Math.random() * myArray.length)];
+		
+		
+			
+		$("#go").on("click", function (){
+				crimeWave(1);
+            });
+			/*
+			function changeImage(x) 
+			{
+				document.getElementById("img").src = images[x];
+				timeoutId = setTimeout(function() 
+				{
+				  changeImage((x + 1) % images.length);
+				}, 3000);
+			}
+			*/
+			
+			// clear element of text (".hello" ).empty();
+			///add text to element $("p").text("Hello world!");
+			
+			function crimeWave(x) 
+			{
+				$('.page-header').text('Crime Wave!!!!');
+					if (x>5)
+						{
+							clearTimeout(timeoutId);
+							console.log("clear timeout");
+							$('.page-header').empty();
+							main();
+						}
+					else
+						{
+							updateMoral(-10);
+							updateCrime(20);
+							console.log(x);
+							timeoutId = setTimeout(function(){crimeWave(x + 1);}, 3000);
+							 //$("#target").append("<img src='image/citizen.jpg' />")
+							 //$('<img src="image/crim2.jpg">' ).insertAfter( "#target");
+							 $('img[src*="citizen.jpg"]').remove();
+						}
+			}
+			
+		/*random event fucntions
+		function crimeWave()
+		{
+			
+			updateMoral(-10);
+			updateCrime(20);
+		}
+		*/
+	
+		
+		function main(){
+		      setInterval(function(){
+			console.log(show = myArray[Math.floor(Math.random() * myArray.length)])
+			}, 3000);
+			}
+	 
+	</script>
+
+ 
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+    <script src="./Dashboard Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="./Dashboard Template for Bootstrap_files/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./Dashboard Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title="" data-original-title="Copy to clipboard">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1415772435298">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">         <embed src="/assets/flash/ZeroClipboard.swf?noCache=1415772435298" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com" scale="exactfit">                </object></div><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" preserveAspectRatio="none" style="visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs></defs><text x="0" y="10" style="font-weight:bold;font-size:10pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle">200x200</text></svg></body></html>

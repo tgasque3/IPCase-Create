@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/custom-theme/jquery-ui-1.10.1.custom.min.css" />
+    <link href="http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css"></style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<body>
+
+    <div id="wrapper">
+		
+		  <header>
+			
+					<h1>Thanksgiving Simulator</h1>
+	
+		 </header>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+			<h4>Money</h4>
+				<div id="moneyBar"></div>
+			<h4>Economy</h4>
+				<div id="economyBar"></div>
+			<h4>Moral</h4>
+				<div id="moralBar"></div>
+			<h4>Crime</h4>
+				<div id="crimeBar"></div>
+				<button id="go">Go!</button>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>City Sim</h1>
+						<h2>        </h2>
+                         <img src="image/city3.jpg" class="center-block" alt="Food">
+                    </div>
+                </div>
+			<div class="row">
+			<div class="col-lg-3">
+				<h4>Prison</h4>
+				<div id="prisonBar"></div>
+			</div>
+			<div class="col-lg-3">
+				 <h4>Education</h4>
+				 <div id="educationBar"></div>
+			</div>
+			<div class="col-lg-3">
+			    <h4>Law Enforcement</h4>
+				<div id="lawBar"></div>
+			</div>
+			<div class="col-lg-3">
+			    <h4>Jobs</h4>
+				<div id="jobBar"></div>
+			</div>
+			</div>
+			
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="./Simple Sidebar - Start Bootstrap Template_files/jquery.js"></script>
+  <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.1.custom.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./Simple Sidebar - Start Bootstrap Template_files/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+//default global values
+ money = 50;
+ moral = 20;
+ crime = 40;
+ economy = 20;
+ 
+	//initialize mainbars
+	 $("#crimeBar").progressbar({
+		value: crime
+			
+	 });
+	 $("#moneyBar").progressbar({
+		value: money
+	 });
+	 $("#moralBar").progressbar({
+		value: moral
+	 });
+	 $("#economyBar").progressbar({
+		value: economy
+	 });
+	 
+	 // create active bars
+	 $("#prisonBar").progressbar({});
+	 $("#educationBar").progressbar({});
+	 $("#lawBar").progressbar({});
+	 $("#jobBar").progressbar({});
+
+
+	 $("#prisonBar").on("click", function () {
+					var currentVal = $("#prisonBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(5);
+							$("#prisonBar").progressbar("option", "value", currentVal);
+							console.log($("#prisonBar").progressbar("value"));
+				});
+				
+	$("#educationBar").on("click", function () {
+					var currentVal = $("#educationBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(5);
+							$("#educationBar").progressbar("option", "value", currentVal);
+				});
+				
+	$("#lawBar").on("click", function () {
+					var currentVal = $("#lawBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(30);
+							$("#lawBar").progressbar("option", "value", currentVal);
+				});
+				
+	$("#jobBar").on("click", function () {
+					var currentVal = $("#jobBar").progressbar("value"),
+							currentVal = currentVal + 5;
+							updateMoney(-20);
+							$("#jobBar").progressbar("option", "value", currentVal);
+				});
+		//update main bars fucntions sesnt
+		function updateMoney(changeVal)
+			{
+				money = money + changeVal;
+				$("#moneyBar").progressbar("option", "value", money);
+			}
+		function updateEconomy(changeVal)
+			{
+				economy = economy + changeVal;
+				$("#economyBar").progressbar("option", "value", economy);
+			}
+		function updateMoral(changeVal)
+			{
+				moral = moral + changeVal;
+				$("#moralBar").progressbar("option", "value", moral);
+			}
+		function updateCrime(changeVal)
+			{
+				crime = crime + changeVal;
+				$("#crimeBar").progressbar("option", "value", crime);
+			}
+			//store events into array for use in random function
+		var myArray = ["A", "B", "c", "d", "e", "f", "g"];
+		//var show = myArray[Math.floor(Math.random() * myArray.length)];
+		
+		
+			
+		$("#go").on("click", function (){
+				crimeWave(1);
+            });
+			/*
+			function changeImage(x) 
+			{
+				document.getElementById("img").src = images[x];
+				timeoutId = setTimeout(function() 
+				{
+				  changeImage((x + 1) % images.length);
+				}, 3000);
+			}
+			*/
+			
+			// clear element of text (".hello" ).empty();
+			///add text to element $("p").text("Hello world!");
+			
+			function crimeWave(x) 
+			{
+				$('h2').text('Hello from the JavaScript');
+				if (x>5)
+				{
+				clearTimeout(timeoutId);
+				console.log("clear timeout");
+				$('h2').empty();
+				main();
+				}
+				else
+				{
+				updateMoral(-1);
+				updateCrime(20);
+				console.log(x);
+				timeoutId = setTimeout(function() 
+				{
+				  crimeWave(x + 1);
+				  
+				}, 3000);
+				}
+			}
+			
+		/*random event fucntions
+		function crimeWave()
+		{
+			
+			updateMoral(-10);
+			updateCrime(20);
+		}
+		*/
+	
+		
+		function main(){
+		      setInterval(function(){
+			console.log(show = myArray[Math.floor(Math.random() * myArray.length)])
+			}, 3000);
+			}
+    </script>
+
+
+
+
+</body></html>
